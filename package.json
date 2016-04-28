@@ -34,6 +34,18 @@
           ".trigger"
         ],
         "configuration": "./apex.configuration.json"
+      },
+      {
+        "id": "visualforce",
+        "aliases": [
+          "Visualforce",
+          "visualforce"
+        ],
+        "extensions": [
+          ".page",
+          ".component"
+        ],
+        "configuration": "./visualforce.configuration.json"
       }
     ],
     "grammars": [
@@ -41,6 +53,11 @@
         "language": "apex",
         "scopeName": "source.apex",
         "path": "./syntaxes/apex.tmLanguage"
+      },
+      {
+        "language": "visualforce",
+        "scopeName": "text.html.basic",
+        "path": "./syntaxes/visualforce.tmLanguage"
       }
     ]
   },
@@ -50,8 +67,8 @@
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "devDependencies": {
-    "jsforce": "^1.6.1",
     "typescript": "^1.8.5",
+    "jsforce": "^1.6.1",
     "vscode": "^0.11.0"
   }
 }
