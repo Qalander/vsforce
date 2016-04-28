@@ -12,7 +12,8 @@
     "Languages"
   ],
   "activationEvents": [
-    "onCommand:extension.sayHello"
+    "onLanguage:apex",
+    "onLanguage:visualforce"
   ],
   "main": "./out/src/extension",
   "contributes": {
