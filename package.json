@@ -8,7 +8,8 @@
         "vscode": "^1.0.0"
     },
     "categories": [
-        "Other"
+        "Other",
+        "Languages"
     ],
     "activationEvents": [
         "onCommand:extension.sayHello"
@@ -18,6 +19,17 @@
         "commands": [{
             "command": "extension.sayHello",
             "title": "Hello World"
+        }],
+        "languages": [{
+            "id": "apex",
+            "aliases": ["Apex", "apex"],
+            "extensions": [".cls",".trigger"],
+            "configuration": "./apex.configuration.json"
+        }],
+        "grammars": [{
+            "language": "apex",
+            "scopeName": "source.apex",
+            "path": "./syntaxes/apex.tmLanguage"
         }]
     },
     "scripts": {
