@@ -25,11 +25,20 @@
             "aliases": ["Apex", "apex"],
             "extensions": [".cls",".trigger"],
             "configuration": "./apex.configuration.json"
+        }, {
+            "id": "visualforce",
+            "aliases": ["Visualforce", "visualforce"],
+            "extensions": [".page", ".component"],
+            "configuration": "./visualforce.configuration.json"
         }],
         "grammars": [{
             "language": "apex",
             "scopeName": "source.apex",
             "path": "./syntaxes/apex.tmLanguage"
+        }, {
+            "language": "visualforce",
+            "scopeName": "text.html.basic",
+            "path": "./syntaxes/visualforce.tmLanguage"
         }]
     },
     "scripts": {
