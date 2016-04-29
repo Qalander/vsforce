@@ -25,6 +25,21 @@ export class Connection {
     });
   }
 
+  // Execute APEX code  
+  public executeCode(code: string) {
+    this.execute((conn: any) => {
+      conn.tooling.executeAnonymous(code, function (err, res) {
+        if (err) { return console.error(err); }
+        if (res.success) {
+          console.log("You're a rockstar !");
+        } else {
+          console.log("Line: " + res.line);
+          console.log(res.compileProblem);
+        }
+      });
+    });
+  }
+
   public execute(callback: (jsforce: any) => void) {
     var _this = this;
     if (this.jsforceConn.accessToken || this.jsforceConn.accessToken != undefined) {
