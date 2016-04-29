@@ -18,7 +18,7 @@ export class Connection {
   }
 
   // Execute a SOQL query and return the results to a callback function if no error.
-  public executeQuery(query: string, callback: (results: any) => void) {
+  public executeQuery(query: string, callback?: (results: any) => void) {
     var _this = this;
 
     this.execute((conn: any) => {
