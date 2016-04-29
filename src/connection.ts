@@ -1,6 +1,8 @@
 let jsforce = require('jsforce');
 
 import * as vscode from 'vscode';
+import * as xml2js from 'xml2js';
+import * as fs from 'fs';
 
 export class Connection {
   private jsforceConn: any;
@@ -58,5 +60,17 @@ export class Connection {
           callback(_this.jsforceConn);
         });
     }
+  }
+
+  public retrive() {
+    var _this = this;
+
+    fs.readFile(vscode.workspace.rootPath + "\\apex\\code\\package.xml", (err: NodeJS.ErrnoException, data: Buffer) => {
+      xml2js.parseString(data.toString(), (err: any, results: any) => {
+        _this.execute((jsforce: any) => {
+          console.log(jsforce.metadata.retrieve({ unpackaged: JSON.stringify(results.Package) }).stream().pipe()); //.pipe(fs.createWriteStream("MyPackage.zip"))
+        });
+      })
+    });
   }
 }

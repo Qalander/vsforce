@@ -21,7 +21,8 @@
       {
         "command": "extension.executeQuery",
         "title": "Execute SOQL"
-      }, {
+      },
+      {
         "command": "extension.contextualQuery",
         "title": "Contextual Query"
       },
@@ -100,8 +101,9 @@
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "devDependencies": {
-    "typescript": "^1.8.5",
     "jsforce": "^1.6.1",
-    "vscode": "^0.11.0"
+    "typescript": "^1.8.5",
+    "vscode": "^0.11.0",
+    "xml2js": "^0.4.16"
   }
 }

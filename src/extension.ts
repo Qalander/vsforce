@@ -8,11 +8,13 @@ let jsforce = require('jsforce');
 export function activate(context: vscode.ExtensionContext) {
     var conn = new Connection();
 
+    conn.retrive();
+
     let executeQuery = vscode.commands.registerCommand('extension.executeQuery', () => {
-        vscode.window.showInputBox({prompt: "Query: "}).then(query => conn.executeQuery(query, (res: any) => {console.log(res)}));
+        vscode.window.showInputBox({ prompt: "Query: " }).then(query => conn.executeQuery(query, (res: any) => { console.log(res) }));
     })
-    context.subscriptions.push(executeQuery);   
-    
+    context.subscriptions.push(executeQuery);
+
     let executeCode = vscode.commands.registerCommand('extension.executeCode', () => {
         var editor = vscode.window.activeTextEditor;
         if (!editor) {
