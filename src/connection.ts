@@ -22,6 +22,7 @@ export class Connection {
     this.execute((conn: any) => {
       conn.query(query, function (err, res) {
         if (err) { return _this.outputConsole.appendLine(err); }
+        _this.outputConsole.appendLine(JSON.stringify(res, null, 2));
         callback(res);
       })
     });
