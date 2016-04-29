@@ -15,13 +15,19 @@ export class Connection {
 
     this.jsforceConn.login(
       this.config.get<string>('username'),
-      this.config.get<string>('password') + this.config.get<string>('securityToken'),
-      function (err, res) {
-        console.log("YEAAAAHHHH")
-      });
+      this.config.get<string>('password') + this.config.get<string>('securityToken'));
   }
 
-  public getConn() {
-    return this.jsforceConn;
+  public execute(callback: (jsforce: any) => any) {
+    if (this.jsforceConn.accessToken != "") {
+      callback(jsforce);
+    } else {
+      this.jsforceConn.login(
+        this.config.get<string>('username'),
+        this.config.get<string>('password') + this.config.get<string>('securityToken'),
+        function (err, res) {
+          callback(jsforce);
+        });
+    }
   }
 }
