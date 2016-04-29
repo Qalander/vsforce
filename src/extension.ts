@@ -7,10 +7,8 @@ let jsforce = require('jsforce');
 
 export function activate(context: vscode.ExtensionContext) {
     var conn = new Connection();
-    
-    conn.executeQuery("SELECT ID FROM Case", function(res) {
-        console.log(res);
-    });
+
+    conn.executeCode("system.debug('patate');");
 
     let disposable = vscode.commands.registerCommand('extension.sayHello', (l: string) => {
         vscode.window.showInformationMessage(l);
