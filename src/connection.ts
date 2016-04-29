@@ -26,14 +26,15 @@ export class Connection {
   }
 
   public execute(callback: (jsforce: any) => void) {
-    if (this.jsforceConn.accessToken != "") {
-      callback(jsforce);
+    var _this = this;
+    if (this.jsforceConn.accessToken || this.jsforceConn.accessToken != undefined) {
+      callback(_this.jsforceConn);
     } else {
       this.jsforceConn.login(
         this.config.get<string>('username'),
         this.config.get<string>('password') + this.config.get<string>('securityToken'),
         function (err, res) {
-          callback(jsforce);
+          callback(_this.jsforceConn);
         });
     }
   }
