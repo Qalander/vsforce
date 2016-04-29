@@ -4,11 +4,12 @@ import * as vscode from 'vscode';
 
 export class Connection {
   private jsforceConn: any;
+  private outputConsole: vscode.OutputChannel;
   private config: vscode.WorkspaceConfiguration;
 
   constructor() {
     this.config = vscode.workspace.getConfiguration('vsforce.organisation');
-
+    this.outputConsole = vscode.window.createOutputChannel("Salesforce");
     this.jsforceConn = new jsforce.Connection({
       loginUrl: this.config.get<string>('loginUrl')
     });
@@ -17,9 +18,10 @@ export class Connection {
   // Execute a SOQL query and return the results to a callback function if no error.
   public executeQuery(query: string, callback: (results: any) => void) {
     var _this = this;
+
     this.execute((conn: any) => {
       conn.query(query, function (err, res) {
-        if (err) { return console.error(err); }
+        if (err) { return _this.outputConsole.appendLine(err); }
         callback(res);
       })
     });
@@ -27,14 +29,16 @@ export class Connection {
 
   // Execute APEX code  
   public executeCode(code: string) {
+    var _this = this;
+
     this.execute((conn: any) => {
       conn.tooling.executeAnonymous(code, function (err, res) {
-        if (err) { return console.error(err); }
+        if (err) { return _this.outputConsole.appendLine(err); }
         if (res.success) {
-          console.log("You're a rockstar !");
+          _this.outputConsole.appendLine("You're a rockstar !");
         } else {
-          console.log("Line: " + res.line);
-          console.log(res.compileProblem);
+          _this.outputConsole.appendLine("Line: " + res.line);
+          _this.outputConsole.appendLine(res.compileProblem);
         }
       });
     });

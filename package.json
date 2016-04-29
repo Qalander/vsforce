@@ -24,6 +24,10 @@
       }, {
         "command": "extension.contextualQuery",
         "title": "Contextual Query"
+      },
+      {
+        "command": "extension.executeCode",
+        "title": "Execute APEX code"
       }
     ],
     "languages": [
