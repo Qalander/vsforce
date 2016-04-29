@@ -9,6 +9,11 @@ export function activate(context: vscode.ExtensionContext) {
     var conn = new Connection();
 
     let executeQuery = vscode.commands.registerCommand('extension.executeQuery', () => {
+        vscode.window.showInputBox({prompt: "Query: "}).then(query => conn.executeQuery(query, (res: any) => {console.log(res)}));
+    })
+    context.subscriptions.push(executeQuery);   
+    
+    /*let disposable = vscode.commands.registerCommand('extension.executeQuery', () => {
         var editor = vscode.window.activeTextEditor;
         if (!editor) {
             return console.log("Please select a valid SOQL query");
@@ -19,7 +24,8 @@ export function activate(context: vscode.ExtensionContext) {
         });
     });
 
-    context.subscriptions.push(executeQuery);
+    context.subscriptions.push(disposable);*/
+    //context.subscriptions.push(executeQuery);
 
     let executeCode = vscode.commands.registerCommand('extension.executeCode', () => {
         var editor = vscode.window.activeTextEditor;

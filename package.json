@@ -21,6 +21,9 @@
       {
         "command": "extension.executeQuery",
         "title": "Execute SOQL"
+      }, {
+        "command": "extension.contextualQuery",
+        "title": "Contextual Query"
       },
       {
         "command": "extension.executeCode",
