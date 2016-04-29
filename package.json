@@ -19,8 +19,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "extension.sayHello",
-        "title": "Hello World"
+        "command": "extension.executeQuery",
+        "title": "Execute SOQL"
       }
     ],
     "languages": [

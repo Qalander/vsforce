@@ -7,13 +7,16 @@ let jsforce = require('jsforce');
 
 export function activate(context: vscode.ExtensionContext) {
     var conn = new Connection();
-    
-    conn.executeQuery("SELECT ID FROM Case", function(res) {
-        console.log(res);
-    });
 
-    let disposable = vscode.commands.registerCommand('extension.sayHello', (l: string) => {
-        vscode.window.showInformationMessage(l);
+    let disposable = vscode.commands.registerCommand('extension.executeQuery', () => {
+        var editor = vscode.window.activeTextEditor;
+        if(!editor) {
+            return console.log("Please select a valid SOQL query");
+        }
+        var query = editor.document.getText(editor.selection);
+        conn.executeQuery(query, function(res) {
+            console.log(res);
+        });
     });
 
     context.subscriptions.push(disposable);
