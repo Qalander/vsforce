@@ -21,6 +21,10 @@
       {
         "command": "extension.executeQuery",
         "title": "Execute SOQL"
+      },
+      {
+        "command": "extension.executeCode",
+        "title": "Execute APEX code"
       }
     ],
     "languages": [

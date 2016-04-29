@@ -8,18 +8,29 @@ let jsforce = require('jsforce');
 export function activate(context: vscode.ExtensionContext) {
     var conn = new Connection();
 
-    let disposable = vscode.commands.registerCommand('extension.executeQuery', () => {
+    let executeQuery = vscode.commands.registerCommand('extension.executeQuery', () => {
         var editor = vscode.window.activeTextEditor;
-        if(!editor) {
+        if (!editor) {
             return console.log("Please select a valid SOQL query");
         }
         var query = editor.document.getText(editor.selection);
-        conn.executeQuery(query, function(res) {
+        conn.executeQuery(query, function (res) {
             console.log(res);
         });
     });
 
-    context.subscriptions.push(disposable);
+    context.subscriptions.push(executeQuery);
+
+    let executeCode = vscode.commands.registerCommand('extension.executeCode', () => {
+        var editor = vscode.window.activeTextEditor;
+        if (!editor) {
+            return console.log("Please select a valid SOQL query");
+        }
+        var query = editor.document.getText(editor.selection);
+        conn.executeCode(query);
+    });
+
+    context.subscriptions.push(executeCode);
 }
 
 // this method is called when your extension is deactivated
