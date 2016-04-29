@@ -33,6 +33,7 @@ export class Connection {
 
     this.execute((conn: any) => {
       conn.tooling.executeAnonymous(code, function (err, res) {
+        _this.outputConsole.show();
         if (err) { return _this.outputConsole.appendLine(err); }
         if (res.success) {
           _this.outputConsole.appendLine("You're a rockstar !");
